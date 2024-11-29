@@ -2,13 +2,13 @@ import React from 'react'
 
 const TableComponent = () => {
   return (
-    <div className="bg-gray-900 text-gray-200 p-4 rounded-lg shadow-lg">
-    <div className="flex items-center justify-between mb-4">
+    <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
+    <div className="mb-6 text-xl font-semibold text-black dark:text-white flex items-center justify-between">
       <h2 className="text-lg font-semibold">Team Members</h2>
       <input
         type="text"
         placeholder="Search Members"
-        className="bg-gray-800 border border-gray-700 text-sm rounded-lg px-3 py-2 text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        className="dark:bg-gray-800 border dark:border-gray-700 text-sm rounded-lg px-3 py-2 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
       />
     </div>
   
@@ -17,7 +17,8 @@ const TableComponent = () => {
         <thead className="bg-gray-800">
           <tr>
             <th className="px-4 py-2 text-left text-sm font-medium text-gray-300">
-              <input type="checkbox" className="rounded border-gray-700 text-blue-500 focus:ring-blue-500" />
+            <input id="default-checkbox" type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"/>
+
             </th>
             <th className="px-4 py-2 text-left text-sm font-medium text-gray-300">Member</th>
             <th className="px-4 py-2 text-left text-sm font-medium text-gray-300">Location</th>
@@ -29,7 +30,11 @@ const TableComponent = () => {
 
           <tr>
             <td className="px-4 py-2">
-              <input type="checkbox" className="rounded border-gray-700 text-blue-500 focus:ring-blue-500" />
+            <input
+        type="text"
+        placeholder="Search Members"
+        className="bg-gray-800 border border-gray-700 text-sm rounded-lg px-3 py-2 text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+      />
             </td>
             <td className="px-4 py-2 flex items-center gap-3">
               <img
