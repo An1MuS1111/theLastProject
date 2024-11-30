@@ -13,8 +13,8 @@ export default function TablePaginationNav({
   basePath,
 }: PaginationNavProps) {
   return (
-    <nav className=" left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-3 px-4">
-      <div className="max-w-7xl mx-auto flex justify-between items-center">
+    <nav className=" left-0 right-0 border-t border-gray-200 dark:border-gray-700 py-3">
+      <div className=" mx-auto flex justify-between items-center">
         {/* Previous Button */}
         <Link
           to={
@@ -22,7 +22,7 @@ export default function TablePaginationNav({
               ? `${basePath}/${currentPage + 1}`
               : `${basePath}/${totalPages}`
           }
-          className={`inline-flex items-center justify-center gap-2.5 rounded-md bg-black py-2 px-5 text-center font-medium dark:text-grey-900 hover:bg-opacity-90 lg:px-8 xl:px-10 ${
+          className={`inline-flex items-center justify-center gap-2.5 rounded-md bg-black py-2 px-5 text-center font-medium dark:text-grey-900 hover:bg-opacity-90 lg:px-8 xl:px-10 border dark:border-gray-700 ${
             currentPage === totalPages ? "pointer-events-none opacity-50" : ""
           }`}
         >
@@ -44,7 +44,7 @@ export default function TablePaginationNav({
               ? `${basePath}/${currentPage + 1}`
               : `${basePath}/${totalPages}`
           }
-          className={`inline-flex items-center justify-center gap-2.5 rounded-md bg-black py-2 px-5 text-center font-medium dark:text-grey-900 hover:bg-opacity-90 lg:px-8 xl:px-10 ${
+          className={`inline-flex items-center justify-center gap-2.5 rounded-md bg-black py-2 px-5 text-center font-medium dark:text-grey-900 hover:bg-opacity-90 lg:px-8 xl:px-10 border dark:border-gray-700 ${
             currentPage === 1 ? "pointer-events-none opacity-50" : ""
           }`}
         >
