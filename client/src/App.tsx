@@ -4,7 +4,7 @@ import { Route, Routes, useLocation } from 'react-router-dom';
 import Loader from './common/Loader';
 import DefaultLayout from './layout/DefaultLayout';
 import Profile from './pages/Profile';
-import TableComponent from './components/TableComponent';
+import TableComponent from './components/Table/TableComponent';
 import PageTitle from './components/PageTitle';
 
 
