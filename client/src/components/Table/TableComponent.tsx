@@ -1,5 +1,6 @@
 import React from "react";
 import TableHeading from "./TableHeading"; // Assuming TableHeading is in the same folder.
+import TablePaginationNav from "./TablePaginationNav";
 
 interface Users {
   email: string;
@@ -46,7 +47,9 @@ const headers = UsersInfo.length > 0 ? Object.keys(UsersInfo[0]) : [];
 const TableComponent = () => {
   // State for sorting
   const [sortField, setSortField] = React.useState<string | null>(null);
-  const [sortDirection, setSortDirection] = React.useState<"asc" | "desc" | null>(null);
+  const [sortDirection, setSortDirection] = React.useState<
+    "asc" | "desc" | null
+  >(null);
 
   const handleSortChange = (field: string) => {
     if (sortField === field) {
@@ -106,7 +109,9 @@ const TableComponent = () => {
                   sort_direction={sortDirection}
                   sortChanged={handleSortChange}
                 >
-                  {key.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase())}
+                  {key
+                    .replace(/_/g, " ")
+                    .replace(/^\w/, (c) => c.toUpperCase())}
                 </TableHeading>
               ))}
             </tr>
@@ -119,7 +124,9 @@ const TableComponent = () => {
                     key={`${rowIndex}-${colIndex}`}
                     className="px-4 py-2 text-sm text-gray-300"
                   >
-                    {value instanceof Date ? value.toISOString() : String(value)}
+                    {value instanceof Date
+                      ? value.toISOString()
+                      : String(value)}
                   </td>
                 ))}
               </tr>
@@ -127,6 +134,7 @@ const TableComponent = () => {
           </tbody>
         </table>
       </div>
+      <TablePaginationNav currentPage={1} totalPages={1} basePath="/" />
     </div>
   );
 };
