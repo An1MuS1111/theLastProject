@@ -3,6 +3,7 @@ import TableHeading from "../../components/Table/TableHeading"; // Assuming Tabl
 import TablePaginationNav from "../../components/Table/TablePaginationNav";
 import { UsersType } from "../../types/UsersType";
 import axiosInstance from "../../axiosInstance/axiosInstance";
+import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 const Users = () => {
   const [usersData, setUsersData] = useState<UsersType[]>([]);
@@ -75,16 +76,21 @@ const Users = () => {
     <div className="rounded-sm border border-stroke bg-white px-5 pt-6 pb-2.5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:pb-1">
       <div className="mb-6 text-xl font-semibold text-black dark:text-white flex items-center justify-between">
         <h2 className="text-lg font-semibold">Team Members</h2>
-        <input
-          type="text"
-          placeholder="Search Members"
-          aria-label="Search Members"
-          className="dark:bg-gray-800 border dark:border-gray-700 text-sm rounded-lg px-3 py-2 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
-        />
+        <div className="relative">
+          <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+            <MagnifyingGlassIcon className="w-5 h-5 text-gray-400" />
+          </span>
+          <input
+            type="text"
+            placeholder="Search Members"
+            aria-label="Search Members"
+            className="dark:bg-gray-800 border dark:border-gray-700 text-sm rounded-lg pl-10 pr-3 py-2 dark:text-gray-300 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          />
+        </div>
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border-collapse border border-gray-700">
+        <table className="min-w-full table-auto  border border-gray-700">
           <thead className="bg-gray-800">
             <tr>
               {headers.map((key) => (
@@ -108,13 +114,13 @@ const Users = () => {
               ))}
             </tr>
           </thead>
-          <tbody className="bg-gray-900 divide-y divide-gray-700">
+          <tbody className="bg-gray-800 divide-y divide-gray-700">
             {sortedUsers.map((user, rowIndex) => (
               <tr key={rowIndex}>
                 {Object.entries(user).map(([key, value], colIndex) => (
                   <td
                     key={`${rowIndex}-${colIndex}`}
-                    className="px-4 py-2 text-sm text-gray-300"
+                    className="px-3 py-3 text-sm text-gray-300 border-collapse border border-gray-700"
                   >
                     {value instanceof Date
                       ? formatDateTime(value)

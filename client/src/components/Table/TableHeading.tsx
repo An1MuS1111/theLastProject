@@ -18,8 +18,11 @@ const TableHeading: React.FC<TableHeadingProps> = ({
   children,
 }) => {
   return (
-    <th onClick={() => sortable && sortChanged(name)} className="cursor-pointer">
-      <div className="px-3 py-3 flex items-center justify-between gap-1">
+    <th
+      onClick={() => sortable && sortChanged(name)}
+      className="cursor-pointer border border-gray-700"
+    >
+      <div className="px-3 py-3 flex items-center justify-between gap-1 ">
         {children}
         {sortable && (
           <div className="flex flex-col items-center">
@@ -54,7 +57,9 @@ const ChevronUpIconComponent: React.FC<ChevronIconProps> = ({
   return (
     <ChevronUpIcon
       className={`w-4 ${
-        sort_field === name && sort_direction === "asc" ? "text-white" : "text-gray-400"
+        sort_field === name && sort_direction === "asc"
+          ? "text-white"
+          : "text-gray-400"
       }`}
     />
   );
@@ -68,7 +73,9 @@ const ChevronDownIconComponent: React.FC<ChevronIconProps> = ({
   return (
     <ChevronDownIcon
       className={`w-4 ${
-        sort_field === name && sort_direction === "desc" ? "text-white" : "text-gray-400"
+        sort_field === name && sort_direction === "desc"
+          ? "text-white"
+          : "text-gray-400"
       }`}
     />
   );
