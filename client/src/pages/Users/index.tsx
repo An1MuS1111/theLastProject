@@ -46,19 +46,28 @@ const Users = () => {
       const aValue = a[sortField as keyof UsersType];
       const bValue = b[sortField as keyof UsersType];
 
+      // Handle numeric sorting
+      if (typeof aValue === "number" && typeof bValue === "number") {
+        return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
+      }
+
+      // Handle string sorting
       if (typeof aValue === "string" && typeof bValue === "string") {
         return sortDirection === "asc"
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue);
       }
+
+      // Handle date sorting
       if (aValue instanceof Date && bValue instanceof Date) {
         return sortDirection === "asc"
           ? aValue.getTime() - bValue.getTime()
           : bValue.getTime() - aValue.getTime();
       }
+
       return 0;
     });
-  }, [sortField, sortDirection, usersData]); // **Updated: Added `usersData` dependency to prevent stale state.**
+  }, [sortField, sortDirection, usersData]);
 
   const formatDateTime = (date: Date | string) => {
     const parsedDate = date instanceof Date ? date : new Date(date); // **Updated: Handle string dates.**
@@ -90,7 +99,7 @@ const Users = () => {
       </div>
 
       <div className="overflow-x-auto">
-        <table className="min-w-full table-auto  border border-gray-700">
+        <table className="min-w-full table-auto  border border-gray-700 text-xs">
           <thead className="bg-gray-800">
             <tr>
               {headers.map((key) => (
@@ -98,12 +107,11 @@ const Users = () => {
                   key={key}
                   name={key}
                   sortable={
-                    key === "email" ||
-                    key === "name" ||
-                    key === "created_at" ||
-                    key === "modified_at"
-                      ? true
-                      : false
+                    key === "password" ||
+                    key === "telephone" ||
+                    key === "is_admin"
+                      ? false
+                      : true
                   }
                   sort_field={sortField}
                   sort_direction={sortDirection}
@@ -117,10 +125,10 @@ const Users = () => {
           <tbody className="bg-gray-800 divide-y divide-gray-700">
             {sortedUsers.map((user, rowIndex) => (
               <tr key={rowIndex}>
-                {Object.entries(user).map(([key, value], colIndex) => (
+                {Object.entries(user).map(([, value], colIndex) => (
                   <td
                     key={`${rowIndex}-${colIndex}`}
-                    className="px-3 py-3 text-sm text-gray-300 border-collapse border border-gray-700"
+                    className="px-3 py-3 text-xs text-gray-300 border-collapse border border-gray-700"
                   >
                     {value instanceof Date
                       ? formatDateTime(value)

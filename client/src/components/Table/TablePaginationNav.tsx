@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 interface PaginationNavProps {
   currentPage: number;
@@ -22,9 +22,8 @@ export default function TablePaginationNav({
         <span className="text-gray-500">Show</span>
         <select
           className="w-16 bg-gray-800 border border-gray-800 text-white rounded px-2 py-2 border-r-8"
-          defaultValue="5"
+          defaultValue="10"
         >
-          <option value="5">5</option>
           <option value="10">10</option>
           <option value="20">20</option>
           <option value="50">50</option>
@@ -44,7 +43,7 @@ export default function TablePaginationNav({
             }`}
             aria-disabled={isFirstPage}
           >
-            <ChevronLeftIcon className="h-4 w-4" />
+            <ArrowLeftIcon className="h-4 w-4" />
           </Link>
 
           {/* <!-- Next Button --> */}
@@ -58,7 +57,7 @@ export default function TablePaginationNav({
             }`}
             aria-disabled={isLastPage}
           >
-            <ChevronRightIcon className="h-4 w-4" />
+            <ArrowRightIcon className="h-4 w-4" />
           </Link>
         </div>
       </div>
