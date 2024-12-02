@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Loader from "./common/Loader";
-import DefaultLayout from "./layout/DefaultLayout";
+import AdminLayout from "./layout/AdminLayout";
 import Profile from "./pages/Profile";
 import PageTitle from "./components/PageTitle";
 import Users from "./pages/Users/index";
@@ -25,7 +25,7 @@ function App() {
   return loading ? (
     <Loader />
   ) : (
-    <DefaultLayout>
+    <AdminLayout>
       <Routes>
         <Route
           path="/profile"
@@ -74,7 +74,7 @@ function App() {
           }
         />
       </Routes>
-    </DefaultLayout>
+    </AdminLayout>
   );
 }
 
