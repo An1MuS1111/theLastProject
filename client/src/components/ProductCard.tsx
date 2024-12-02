@@ -16,7 +16,7 @@ type ProductCardProps = {
 
 const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
-    <div key={product.id} className="group relative">
+    <div key={product.id} className="group relative bg-yellow-200">
       <img
         alt={product.imageAlt}
         src={product.imageSrc}
