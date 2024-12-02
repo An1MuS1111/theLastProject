@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import TableHeading from "../../components/Table/TableHeading"; // Assuming TableHeading is in the same folder.
+import TableHeading from "../../components/Table/TableHeading";
 import TablePaginationNav from "../../components/Table/TablePaginationNav";
 import { UsersType } from "../../types/UsersType";
 import axiosInstance from "../../axiosInstance/axiosInstance";
@@ -11,9 +11,11 @@ const Users = () => {
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
     null
   );
+  const [currentPage, setCurrentPage] = useState(1); // Current page
+  const [pageSize, setPageSize] = useState(10); // Items per page
 
   useEffect(() => {
-    //  fetching UsersData
+    //  Fetching UsersData
     (async () => {
       try {
         const response = await axiosInstance.get("/users");
@@ -26,7 +28,7 @@ const Users = () => {
 
   const headers = useMemo(() => {
     return usersData.length > 0 ? Object.keys(usersData[0]) : [];
-  }, [usersData]); // **Updated: Used `useMemo` to avoid recalculating headers on every render.**
+  }, [usersData]);
 
   const handleSortChange = (field: string) => {
     if (sortField === field) {
@@ -46,19 +48,16 @@ const Users = () => {
       const aValue = a[sortField as keyof UsersType];
       const bValue = b[sortField as keyof UsersType];
 
-      // Handle numeric sorting
       if (typeof aValue === "number" && typeof bValue === "number") {
         return sortDirection === "asc" ? aValue - bValue : bValue - aValue;
       }
 
-      // Handle string sorting
       if (typeof aValue === "string" && typeof bValue === "string") {
         return sortDirection === "asc"
           ? aValue.localeCompare(bValue)
           : bValue.localeCompare(aValue);
       }
 
-      // Handle date sorting
       if (aValue instanceof Date && bValue instanceof Date) {
         return sortDirection === "asc"
           ? aValue.getTime() - bValue.getTime()
@@ -69,8 +68,13 @@ const Users = () => {
     });
   }, [sortField, sortDirection, usersData]);
 
+  const paginatedUsers = useMemo(() => {
+    const startIndex = (currentPage - 1) * pageSize;
+    return sortedUsers.slice(startIndex, startIndex + pageSize);
+  }, [currentPage, pageSize, sortedUsers]);
+
   const formatDateTime = (date: Date | string) => {
-    const parsedDate = date instanceof Date ? date : new Date(date); // **Updated: Handle string dates.**
+    const parsedDate = date instanceof Date ? date : new Date(date);
     return new Intl.DateTimeFormat("en-GB", {
       day: "2-digit",
       month: "short",
@@ -123,7 +127,7 @@ const Users = () => {
             </tr>
           </thead>
           <tbody className="bg-gray-800 divide-y divide-gray-700">
-            {sortedUsers.map((user, rowIndex) => (
+            {paginatedUsers.map((user, rowIndex) => (
               <tr key={rowIndex}>
                 {Object.entries(user).map(([, value], colIndex) => (
                   <td
@@ -140,7 +144,17 @@ const Users = () => {
           </tbody>
         </table>
       </div>
-      <TablePaginationNav currentPage={1} totalPages={1} basePath="/" />
+      <TablePaginationNav
+        currentPage={currentPage}
+        totalPages={Math.ceil(usersData.length / pageSize)}
+        pageSize={pageSize}
+        totalItems={usersData.length}
+        onPageChange={setCurrentPage}
+        onPageSizeChange={(size) => {
+          setPageSize(size);
+          setCurrentPage(1); // Reset to first page
+        }}
+      />
     </div>
   );
 };
