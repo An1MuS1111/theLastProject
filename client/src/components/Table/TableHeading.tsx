@@ -1,4 +1,4 @@
-import { ChevronUpIcon, ChevronDownIcon } from "@radix-ui/react-icons";
+import { TriangleUpIcon, TriangleDownIcon } from "@radix-ui/react-icons";
 
 interface TableHeadingProps {
   name: string;
@@ -26,12 +26,12 @@ const TableHeading: React.FC<TableHeadingProps> = ({
         {children}
         {sortable && (
           <div className="flex flex-col items-center">
-            <ChevronUpIconComponent
+            <TriangleUpIconComponent
               name={name}
               sort_field={sort_field}
               sort_direction={sort_direction}
             />
-            <ChevronDownIconComponent
+            <TriangleDownIconComponent
               name={name}
               sort_field={sort_field}
               sort_direction={sort_direction}
@@ -43,19 +43,19 @@ const TableHeading: React.FC<TableHeadingProps> = ({
   );
 };
 
-interface ChevronIconProps {
+interface TriangleIconProps {
   name: string;
   sort_field?: string | null;
   sort_direction?: "asc" | "desc" | null;
 }
 
-const ChevronUpIconComponent: React.FC<ChevronIconProps> = ({
+const TriangleUpIconComponent: React.FC<TriangleIconProps> = ({
   name,
   sort_field,
   sort_direction,
 }) => {
   return (
-    <ChevronUpIcon
+    <TriangleUpIcon
       className={`w-4 ${
         sort_field === name && sort_direction === "asc"
           ? "text-white"
@@ -65,13 +65,13 @@ const ChevronUpIconComponent: React.FC<ChevronIconProps> = ({
   );
 };
 
-const ChevronDownIconComponent: React.FC<ChevronIconProps> = ({
+const TriangleDownIconComponent: React.FC<TriangleIconProps> = ({
   name,
   sort_field,
   sort_direction,
 }) => {
   return (
-    <ChevronDownIcon
+    <TriangleDownIcon
       className={`w-4 ${
         sort_field === name && sort_direction === "desc"
           ? "text-white"
