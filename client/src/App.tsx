@@ -8,6 +8,7 @@ import PageTitle from "./components/PageTitle";
 import Users from "./pages/Users/index";
 import SignUp from "./pages/Authentication/SignUp";
 import SignIn from "./pages/Authentication/SignIn";
+import Products from "./pages/Products";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
@@ -59,6 +60,16 @@ function App() {
             <>
               <PageTitle title="Sign In" />
               <SignIn />
+            </>
+          }
+        />
+
+        <Route
+          path="/products"
+          element={
+            <>
+              <PageTitle title="Products | Landing" />
+              <Products />
             </>
           }
         />
