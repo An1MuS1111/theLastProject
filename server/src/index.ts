@@ -1,35 +1,44 @@
-import express, { Request, Response } from "express";
+import express from "express";
 import cors from "cors";
-
-// import database
+import path from "path";
+import "dotenv/config";
+// Import database
 import sequelize from "./config/database";
 
-// import routes
-import userRoutes from "./routes/userRoutes";
+// Import routes
+import userRouter from "./routes/userRouter";
+import uploadRouter from "./routes/uploadRouter";
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-// check database connection
+// Set the routes
+app.use("/users", userRouter);
+app.use("/upload", uploadRouter);
+
+// Serve static files from the 'upload' directory
+app.use(express.static(path.join(__dirname, "uploads")));
+
+// Define the port
+const PORT: number = process.env.PORT ? Number(process.env.PORT) : 4444;
+
+// Function to initialize the server
 (async () => {
     try {
+        // Check database connection
         await sequelize.authenticate();
         console.log("Database connected successfully.");
-        await sequelize.sync(); // Syncs models with the database
+
+        // Sync models with the database
+        await sequelize.sync();
+
+        // Start the server
+        app.listen(PORT, () => {
+            console.log(`Server is running on http://localhost:${PORT}`);
+        });
     } catch (error) {
         console.error("Unable to connect to the database:", error);
     }
 })();
-
-
-// set the routes
-app.use("/users", userRoutes);
-
-app.get("/", (req: Request, res: Response) => {
-    res.json("Hello");
-});
-
-const PORT: number = 4444;
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
