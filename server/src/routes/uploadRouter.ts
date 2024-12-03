@@ -9,11 +9,12 @@ const router = express.Router();
 const multerStorage = multer.diskStorage({
     destination: (req: Request, file, cb) => {
         const id = req.params.id;
+        console.log(id);
         if (!id) {
             return cb(new Error("ID parameter is missing"), "");
         }
 
-        const uploadPath = path.join("uploads", id);
+        const uploadPath = path.join("src/uploads", id);
 
         // Check if the folder exists and create it if not
         fs.mkdir(uploadPath, { recursive: true }, (err) => {
@@ -74,44 +75,3 @@ router.post(
 );
 
 export default router;
-
-// import express, { Request, Response } from "express";
-// import multer from "multer";
-// import fs from "fs";
-// import path from "path";
-
-// const router = express.Router();
-
-// // Route to upload a single file
-// router.post(
-//     "/upload/:id",
-//     upload.single("file"),
-//     (req: Request, res: Response) => {
-//         if (!req.file) {
-//             return res.status(400).json({ error: "No file uploaded" });
-//         }
-
-//         res.status(200).json({
-//             message: "File uploaded successfully",
-//             file: req.file,
-//         });
-//     }
-// );
-
-// // Route to upload multiple files
-// router.post(
-//     "/upload/multiple/:id",
-//     upload.array("files", 5), // Adjust limit based on requirements
-//     (req: Request, res: Response) => {
-//         if (!req.files || (req.files as Express.Multer.File[]).length === 0) {
-//             return res.status(400).json({ error: "No files uploaded" });
-//         }
-
-//         res.status(200).json({
-//             message: "Files uploaded successfully",
-//             files: req.files,
-//         });
-//     }
-// );
-
-// export default router;
