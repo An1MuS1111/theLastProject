@@ -9,7 +9,7 @@ const router = express.Router();
 const multerStorage = multer.diskStorage({
     destination: (req: Request, file, cb) => {
         const id = req.params.id;
-        console.log(id);
+
         if (!id) {
             return cb(new Error("ID parameter is missing"), "");
         }
