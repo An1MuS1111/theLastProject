@@ -1,12 +1,29 @@
 import { Router, Request, Response } from "express";
+import { Op } from "sequelize"; // Import Sequelize operators
 import { User } from "../models/User";
 
 const router = Router();
 
-// get all user
+// Get all users with optional search
 router.get("/", async (req: Request, res: Response) => {
+    const { search } = req.query;
+
     try {
-        const users = await User.findAll();
+        // Build the search filter using Sequelize's `Op` operators
+        const searchFilter = search
+            ? {
+                  [Op.or]: [
+                      { email: { [Op.like]: `%${search}%` } },
+                      { name: { [Op.like]: `%${search}%` } },
+                  ],
+              }
+            : {};
+
+        // Fetch users with the search filter applied
+        const users = await User.findAll({
+            where: searchFilter, // Apply search filter
+        });
+
         res.json(users);
     } catch (error) {
         res.status(500).json({
