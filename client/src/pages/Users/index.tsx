@@ -113,7 +113,8 @@ const Users = () => {
                   sortable={
                     key === "password" ||
                     key === "telephone" ||
-                    key === "is_admin"
+                    key === "is_admin" ||
+                    key === "image"
                       ? false
                       : true
                   }
@@ -134,9 +135,24 @@ const Users = () => {
                     key={`${rowIndex}-${colIndex}`}
                     className="px-3 py-3 text-xs text-gray-300 border-collapse border border-gray-700"
                   >
-                    {value instanceof Date
-                      ? formatDateTime(value)
-                      : String(value)}
+                    {typeof value === "string" &&
+                    /\.(jpg|jpeg|png|gif|webp|svg)$/i.test(value) ? (
+                      <img
+                        src={value}
+                        alt={`${rowIndex}-${colIndex} preview`}
+                        className="h-6 w-6 object-cover rounded m-auto"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement;
+                          target.onerror = null; // Prevent infinite loop in case fallback fails
+                          target.style.display = "none";
+                          target.parentElement?.append("Preview not available");
+                        }}
+                      />
+                    ) : value instanceof Date ? (
+                      formatDateTime(value)
+                    ) : (
+                      String(value)
+                    )}
                   </td>
                 ))}
               </tr>
