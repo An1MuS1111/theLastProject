@@ -33,7 +33,7 @@ router.get("/", async (req: Request, res: Response) => {
     }
 });
 
-// get user by primary key
+// Get user by primary key
 router.get("/:id", async (req: Request, res: Response) => {
     try {
         const user = await User.findByPk(req.params.id);
@@ -45,10 +45,9 @@ router.get("/:id", async (req: Request, res: Response) => {
     }
 });
 
-// add user
+// Add user
 router.post("/add", async (req: Request, res: Response) => {
-    // console.log(req.body);
-    const { email, password, name, telephone, is_admin } = req.body;
+    const { email, password, name, telephone, is_admin, image } = req.body;
     try {
         const user = await User.create({
             email,
@@ -56,6 +55,7 @@ router.post("/add", async (req: Request, res: Response) => {
             name,
             telephone,
             is_admin,
+            image, // Optional attribute
         });
         res.status(201).json(user);
     } catch (error) {
@@ -63,9 +63,9 @@ router.post("/add", async (req: Request, res: Response) => {
     }
 });
 
-// update user
+// Update user
 router.put("/:id", async (req: Request, res: Response) => {
-    const { email, password, name, telephone, is_admin } = req.body;
+    const { email, password, name, telephone, is_admin, image } = req.body;
 
     try {
         const user = await User.findByPk(req.params.id);
@@ -76,6 +76,7 @@ router.put("/:id", async (req: Request, res: Response) => {
                 name,
                 telephone,
                 is_admin,
+                image, // Optional attribute
             });
             res.json(user);
         } else {
@@ -86,7 +87,7 @@ router.put("/:id", async (req: Request, res: Response) => {
     }
 });
 
-// delete a user by ID
+// Delete a user by ID
 router.delete("/:id", async (req: Request, res: Response) => {
     try {
         const user = await User.findByPk(req.params.id);
