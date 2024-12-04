@@ -1,6 +1,6 @@
 import { Router, Request, Response } from "express";
 import { Op } from "sequelize"; // Import Sequelize operators
-import { User } from "../models/User";
+import { User } from "../models/User/User";
 
 const router = Router();
 

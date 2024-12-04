@@ -1,25 +1,20 @@
-const { Sequelize } = require('sequelize');
-import dotenv from 'dotenv'
-import { User } from '../models/User';
-import { UserAddress } from '../models/UserAddress';
-import { UserPayment } from '../models/UserPayment';
+const { Sequelize } = require("sequelize");
+import dotenv from "dotenv";
 
+import { User, UserAddress, UserPayment } from "../models/User";
 
-dotenv.config()
+dotenv.config();
 
 // Option 1: Passing a connection URI
-const sequelize = new Sequelize(process.env.DATABASE_URI,{
-    dialect: 'postgres',
+const sequelize = new Sequelize(process.env.DATABASE_URI, {
+    dialect: "postgres",
     logging: false,
-}) // Example for postgres
-
+}); // Example for postgres
 
 // Initialize models and associations
 User.initModel(sequelize);
 UserAddress.initModel(sequelize);
 UserPayment.initModel(sequelize);
-
-
 
 // Set up associations
 User.associate();
