@@ -11,9 +11,14 @@ interface UserAttributes {
     created_at?: Date;
     modified_at?: Date;
     is_admin?: boolean;
+    image?: string;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
+interface UserCreationAttributes
+    extends Optional<
+        UserAttributes,
+        "id" | "created_at" | "modified_at" | "is_admin" | "image"
+    > {}
 
 export class User
     extends Model<UserAttributes, UserCreationAttributes>
@@ -24,9 +29,10 @@ export class User
     public password!: string;
     public name!: string;
     public telephone!: string;
-    public created_at!: Date;
-    public modified_at!: Date;
-    public is_admin!: boolean;
+    public created_at?: Date;
+    public modified_at?: Date;
+    public is_admin?: boolean;
+    public image?: string;
 
     public static initModel(sequelize: Sequelize) {
         User.init(
@@ -41,9 +47,18 @@ export class User
                     unique: true,
                     allowNull: false,
                 },
-                password: DataTypes.STRING,
-                name: DataTypes.STRING,
-                telephone: DataTypes.STRING,
+                password: {
+                    type: DataTypes.STRING,
+                    allowNull: false,
+                },
+                name: {
+                    type: DataTypes.STRING,
+                    allowNull: false,
+                },
+                telephone: {
+                    type: DataTypes.STRING,
+                    allowNull: false,
+                },
                 created_at: {
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW,
@@ -52,13 +67,23 @@ export class User
                     type: DataTypes.DATE,
                     defaultValue: DataTypes.NOW,
                 },
-                is_admin: { type: DataTypes.BOOLEAN, defaultValue: false },
+                is_admin: {
+                    type: DataTypes.BOOLEAN,
+                    defaultValue: false,
+                },
+                image: {
+                    type: DataTypes.STRING,
+                    validate: {
+                        // ensures the value is valid url
+                        isUrl: true,
+                    },
+                },
             },
             {
                 sequelize,
                 modelName: "User",
                 underscored: true,
-                timestamps: false,
+                timestamps: true, // Change to true if Sequelize should handle createdAt/updatedAt
             }
         );
     }
