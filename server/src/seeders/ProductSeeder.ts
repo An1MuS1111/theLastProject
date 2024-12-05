@@ -40,7 +40,8 @@ export const ProductSeeder = async () => {
                     })
             )
         );
-        // products.map((pro) => console.log(pro));
+
+
         console.log("50 products have been created!");
     } catch (error) {
         console.error("Error seeding products:", error);
