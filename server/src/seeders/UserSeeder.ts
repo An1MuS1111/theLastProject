@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 import { User } from "../models/User"; // Adjust the import path as needed
-import sequelize from "../config/database"; // Adjust the import path for your sequelize setup
 
 export const UserSeeder = async () => {
     try {
@@ -29,7 +28,5 @@ export const UserSeeder = async () => {
         console.log("30 users have been created successfully");
     } catch (error) {
         console.error("Error seeding users:", error);
-    } finally {
-        await sequelize.close(); // Close the database connection
     }
 };

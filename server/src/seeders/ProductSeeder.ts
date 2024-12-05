@@ -1,6 +1,5 @@
 import { faker } from "@faker-js/faker";
 import { Product } from "../models/Product"; // Adjust the path as needed
-import sequelize from "../config/database"; // Adjust to your sequelize setup
 
 export const ProductSeeder = async () => {
     try {
@@ -41,11 +40,9 @@ export const ProductSeeder = async () => {
                     })
             )
         );
-
+        // products.map((pro) => console.log(pro));
         console.log("50 products have been created!");
     } catch (error) {
         console.error("Error seeding products:", error);
-    } finally {
-        await sequelize.close(); // Close the database connection
     }
 };
