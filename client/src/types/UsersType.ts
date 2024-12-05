@@ -1,6 +1,7 @@
 export type UsersType = {
   id: number;
   email: string;
+  image: string;
   password: string;
   name: string;
   telephone: number;

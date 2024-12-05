@@ -14,16 +14,6 @@ const Users = () => {
   const [currentPage, setCurrentPage] = useState(1); // Current page
   const [pageSize, setPageSize] = useState(10); // Items per page
 
-  const UsersDict = {
-    is_admin: "Is Admin?",
-    first_name: "First Name",
-    last_name: "Last Name",
-    email: "Email Address",
-    image: "Image",
-    id: "Id",
-    password: "Password",
-  };
-
   useEffect(() => {
     //  Fetching UsersData
     (async () => {
@@ -132,8 +122,7 @@ const Users = () => {
                   sort_direction={sortDirection}
                   sortChanged={handleSortChange}
                 >
-                  {/* {key} */}
-                  {UsersDict[key]}
+                  {key}
                 </TableHeading>
               ))}
             </tr>
