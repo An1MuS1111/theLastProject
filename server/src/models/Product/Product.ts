@@ -1,4 +1,5 @@
 import { Model, DataTypes, Optional, Sequelize } from "sequelize";
+import { ProductCategory, ProductSubCategory } from "./";
 
 interface ProductAttributes {
     id: number;
@@ -107,12 +108,12 @@ export class Product
         );
     }
 
-    public static associate(models: any) {
-        Product.belongsTo(models.Category, {
+    public static associate() {
+        Product.belongsTo(ProductCategory, {
             foreignKey: "category_id",
             as: "category",
         });
-        Product.belongsTo(models.SubCategory, {
+        Product.belongsTo(ProductSubCategory, {
             foreignKey: "subCategory_id",
             as: "subCategory",
         });

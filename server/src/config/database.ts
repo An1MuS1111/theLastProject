@@ -2,6 +2,11 @@ const { Sequelize } = require("sequelize");
 import dotenv from "dotenv";
 
 import { User, UserAddress, UserPayment } from "../models/User";
+import {
+    Product,
+    ProductCategory,
+    ProductSubCategory,
+} from "../models/Product";
 
 dotenv.config();
 
@@ -16,9 +21,17 @@ User.initModel(sequelize);
 UserAddress.initModel(sequelize);
 UserPayment.initModel(sequelize);
 
+Product.initModel(sequelize);
+ProductCategory.initModel(sequelize);
+ProductSubCategory.initModel(sequelize);
+
 // Set up associations
 User.associate();
 UserAddress.associate();
 UserPayment.associate();
+
+Product.associate();
+ProductCategory.associate();
+ProductSubCategory.associate();
 
 export default sequelize;

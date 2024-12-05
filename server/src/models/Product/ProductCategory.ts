@@ -1,7 +1,5 @@
 import { Model, DataTypes, Sequelize, Optional } from "sequelize";
-import { Product } from "./Product";
-import { ProductSubCategory } from "./ProductSubCategory";
-
+import { Product, ProductSubCategory } from "./";
 interface ProductCategoryAttributes {
     id: number;
     name: string;
@@ -69,16 +67,16 @@ export class ProductCategory
         );
     }
 
-    public static associate(models: any) {
+    public static associate() {
         // Relationship with Product
-        ProductCategory.hasMany(models.Product, {
+        ProductCategory.hasMany(Product, {
             foreignKey: "category_id",
             as: "products",
             onDelete: "CASCADE",
         });
 
         // Relationship with ProductSubCategory
-        ProductCategory.hasMany(models.ProductSubCategory, {
+        ProductCategory.hasMany(ProductSubCategory, {
             foreignKey: "category_id",
             as: "subCategories",
             onDelete: "CASCADE",
