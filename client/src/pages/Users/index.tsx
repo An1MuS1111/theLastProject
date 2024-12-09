@@ -1,12 +1,12 @@
 import { useState, useEffect, useMemo } from "react";
 import TableHeading from "../../components/Table/TableHeading";
 import TablePaginationNav from "../../components/Table/TablePaginationNav";
-import { UsersType } from "../../types/UsersType";
+import { UserType } from "../../types/UserType";
 import axiosInstance from "../../axiosInstance/axiosInstance";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 
 const Users = () => {
-  const [usersData, setUsersData] = useState<UsersType[]>([]);
+  const [usersData, setUsersData] = useState<UserType[]>([]);
   const [sortField, setSortField] = useState<string | null>(null);
   const [sortDirection, setSortDirection] = useState<"asc" | "desc" | null>(
     null
@@ -45,8 +45,8 @@ const Users = () => {
     if (!sortField || !sortDirection) return usersData;
 
     return [...usersData].sort((a, b) => {
-      const aValue = a[sortField as keyof UsersType];
-      const bValue = b[sortField as keyof UsersType];
+      const aValue = a[sortField as keyof UserType];
+      const bValue = b[sortField as keyof UserType];
 
       if (typeof aValue === "number" && typeof bValue === "number") {
         return sortDirection === "asc" ? aValue - bValue : bValue - aValue;

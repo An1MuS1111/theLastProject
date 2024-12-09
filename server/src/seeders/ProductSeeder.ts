@@ -5,6 +5,7 @@ import {
     ProductSubCategory,
 } from "../models/Product"; // Adjust the path as needed
 
+// seeding ProductCategories and Subcategories
 const ProductCategorySeeder = async () => {
     try {
         // Create 5 ProductCategories
@@ -61,7 +62,7 @@ export const ProductSeeder = async () => {
             price: parseFloat(faker.commerce.price({ min: 10, max: 100000 })), // Random price between 10 and 1000
             images: Array.from({
                 length: faker.number.int({ min: 1, max: 5 }),
-            }).map(() => faker.image.avatar()),
+            }).map(() => faker.image.urlPicsumPhotos()),
         }));
 
         // Use Promise.all to handle async operations for all user creations
