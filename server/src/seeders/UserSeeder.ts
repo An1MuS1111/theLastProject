@@ -6,6 +6,7 @@ export const UserSeeder = async () => {
         // Create an array of user objects
         const users = Array.from({ length: 30 }).map(() => ({
             image: faker.image.avatar(),
+            // image: faker.image.urlPlaceholder({ format: "png" }),
             email: faker.internet.email(),
             password: faker.internet.password(),
             name: faker.person.fullName(),

@@ -4,6 +4,7 @@ import { User } from "../models/User";
 
 const router = Router();
 
+
 // Get all users with optional search
 router.get("/", async (req: Request, res: Response) => {
     const { search } = req.query;

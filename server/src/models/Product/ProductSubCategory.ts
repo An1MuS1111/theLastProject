@@ -11,7 +11,10 @@ interface ProductSubCategoryAttributes {
 }
 
 interface ProductSubCategoryCreationAttributes
-    extends Optional<ProductSubCategoryAttributes, "id"> {}
+    extends Optional<
+        ProductSubCategoryAttributes,
+        "id" | "created_at" | "modified_at" | "deleted_at"
+    > {}
 
 export class ProductSubCategory
     extends Model<
