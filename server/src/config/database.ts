@@ -7,6 +7,7 @@ import {
     ProductCategory,
     ProductSubCategory,
 } from "../models/Product";
+import { PaymentMethod, CardDetail, PayPalDetail } from "../models/Payment";
 
 dotenv.config();
 
@@ -25,6 +26,10 @@ Product.initModel(sequelize);
 ProductCategory.initModel(sequelize);
 ProductSubCategory.initModel(sequelize);
 
+PaymentMethod.initModel(sequelize);
+CardDetail.initModel(sequelize);
+PayPalDetail.initModel(sequelize);
+
 // Set up associations
 User.associate();
 UserAddress.associate();
@@ -33,5 +38,9 @@ UserPayment.associate();
 Product.associate();
 ProductCategory.associate();
 ProductSubCategory.associate();
+
+PaymentMethod.associate();
+CardDetail.associate();
+PayPalDetail.associate();
 
 export default sequelize;
