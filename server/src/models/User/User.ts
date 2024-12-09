@@ -82,6 +82,7 @@ export class User
             {
                 sequelize,
                 modelName: "User",
+                tableName: "Users",
                 underscored: true,
                 timestamps: true, // Change to true if Sequelize should handle createdAt/updatedAt
             }
