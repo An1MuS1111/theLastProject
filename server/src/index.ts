@@ -8,6 +8,7 @@ import sequelize from "./config/database";
 // Import routes
 import userRouter from "./routes/userRouter";
 import productRouter from "./routes/productRouter";
+import productCategoryRouter from "./routes/productCategoryRouter";
 import uploadRouter from "./routes/uploadRouter";
 
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use("/users", userRouter);
 app.use("/upload", uploadRouter);
 app.use("/products", productRouter);
+app.use("/productCategories", productCategoryRouter);
 
 // Serve static files from the 'upload' directory
 app.use(express.static(path.join(__dirname, "uploads")));
