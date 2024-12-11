@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, memo } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
 
 type ProductType = {
@@ -12,9 +12,22 @@ type ProductType = {
   images: string[];
 };
 
-const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
+// pre-load images
+// const preloadImages = (images: string[]) => {
+//   images.forEach((image) => {
+//     const img = new Image();
+//     img.src = image;
+//   });
+// };
+
+const ProductCard: React.FC<{ product: ProductType }> = memo(({ product }) => {
   const [hidden, setHidden] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // ref:pre-load images
+  // useEffect(() => {
+  //   preloadImages(product.images);
+  // }, [product.images]);
 
   const nextImage = () =>
     setCurrentIndex((prevIndex) =>
@@ -39,23 +52,23 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
           <img
             alt={product.name}
             src={imageUrl}
-            loading="lazy"
             className="aspect-square w-full rounded-md object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
           />
         </a>
         <ChevronLeftIcon
           onClick={prevImage}
           style={{ opacity: hidden ? 0 : 1, cursor: "pointer" }}
-          className="absolute left-0 top-1/2 -translate-y-1/2 h-12 w-6 text-white bg-gray-300"
+          className="absolute left-0 top-1/2 -translate-y-1/2 h-12 w-6 text-white bg-gray-300 transition-opacity duration-300"
         />
         <ChevronRightIcon
           onClick={nextImage}
           style={{ opacity: hidden ? 0 : 1, cursor: "pointer" }}
-          className="absolute right-0 top-1/2 -translate-y-1/2 h-12 w-6 text-white bg-gray-300"
+          className="absolute right-0 top-1/2 -translate-y-1/2 h-12 w-6 text-white bg-gray-300 transition-opacity duration-300"
         />
       </div>
       <div
-        className={`relative grid-flow-col grid grid-cols-${product.images.length}`}
+        className={`relative grid-flow-col grid grid-cols-${product.images.length} transition-opacity duration-300`}
+        style={{ opacity: hidden ? 0 : 1, cursor: "pointer" }}
       >
         {product.images.map((_, index) => (
           <div
@@ -72,6 +85,6 @@ const ProductCard: React.FC<{ product: ProductType }> = ({ product }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ProductCard;
