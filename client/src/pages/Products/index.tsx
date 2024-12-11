@@ -4,7 +4,6 @@ import axiosInstance from "../../axiosInstance/axiosInstance";
 
 const Products = () => {
   const [productsData, setProductsData] = useState([]);
-  const count = 0;
 
   useEffect(() => {
     (async () => {
@@ -15,7 +14,7 @@ const Products = () => {
         console.error("error fetching products data");
       }
     })();
-  }, [count]);
+  }, []);
 
   return (
     <div className="mx-auto max-w-2xl px-4  sm:px-6  lg:max-w-7xl lg:px-8">
