@@ -21,6 +21,8 @@ router.get("/", async (req: Request, res: Response) => {
         const products = await Product.findAll({
             where: searchFilter,
         });
+
+        console.log(products);
         res.json(products);
     } catch (error) {
         res.status(500).json({

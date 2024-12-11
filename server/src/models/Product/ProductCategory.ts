@@ -60,7 +60,7 @@ export class ProductCategory
                 sequelize,
                 modelName: "ProductCategory",
                 tableName: "ProductCategories", // Custom table name, optional
-                underscored: true, // Use snake_case in the database
+
                 timestamps: true, // Enables created_at and updated_at
                 paranoid: true, // Enables soft deletion with deleted_at
                 createdAt: "created_at",

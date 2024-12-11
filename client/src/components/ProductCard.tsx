@@ -69,7 +69,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           className="absolute right-0 top-1/2 -translate-y-1/2 h-12 w-6 text-white bg-gray-300"
         />
       </div>
-
+      <div
+        className={`relative grid-flow-col grid grid-cols-${product.images.length}`}
+      >
+        {product.images.map((image, index) => (
+          <div
+            key={index}
+            className={`h-1 ${
+              index === currentIndex ? "bg-black-2" : "bg-white"
+            }`}
+          ></div>
+        ))}
+      </div>
       <div className="my-2 flex justify-between px-4">
         <div>
           <h3 className="text-sm text-gray-700">

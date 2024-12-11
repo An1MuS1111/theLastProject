@@ -99,7 +99,6 @@ export class Product
                 sequelize,
                 modelName: "Product",
                 tableName: "Products",
-                underscored: true,
                 timestamps: true,
                 paranoid: true, // Enables soft deletion
                 createdAt: "created_at",
