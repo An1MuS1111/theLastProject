@@ -116,7 +116,9 @@ const UserSidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
           {/* <!-- Menu Group --> */}
           <div>
-            <h3 className="mb-4 font-semibold text-bodydark2">Categories</h3>
+            <h3 className="mb-4 text-lg font-semibold text-bodydark2">
+              Categories
+            </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
               {/* <!-- Menu Item tables --> */}
@@ -339,6 +341,24 @@ const UserSidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li> */}
               {/* <!-- Menu Item Settings --> */}
             </ul>
+          </div>
+          <div>
+            {/* Here starts the sortby option */}
+            <h3 className="mb-4 text-lg font-semibold text-bodydark2">
+              Sort by
+            </h3>
+            <select
+              name="sort-by"
+              id="sort-by"
+              aria-label="Sort products by"
+              className="flex h-10 rounded-s w-full items-center justify-between  border  border-gray-500 bg-black px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <option value="" disabled selected hidden>
+                Select Option
+              </option>
+              <option value="price-low-high">Price: Low to High</option>
+              <option value="price-high-low">Price: High to Low</option>
+            </select>
           </div>
         </nav>
         {/* <!-- Sidebar Menu --> */}

@@ -10,10 +10,10 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex h-screen overflow-hidden">
         {/* <!-- ===== Sidebar Start ===== --> */}
-        {/* <UserSidebar
+        <UserSidebar
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
-        /> */}
+        />
         {/* <!-- ===== Sidebar End ===== --> */}
 
         {/* <!-- ===== Content Area Start ===== --> */}
