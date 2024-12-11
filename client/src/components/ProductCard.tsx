@@ -43,7 +43,7 @@ const ProductCard: React.FC<{ product: ProductType }> = memo(({ product }) => {
 
   return (
     <div
-      className="relative bg-gray-300 rounded-md shadow-md hover:shadow-lg"
+      className="relative bg-gray-300  shadow-md hover:shadow-lg"
       onMouseEnter={() => setHidden(false)}
       onMouseLeave={() => setHidden(true)}
     >
@@ -52,7 +52,7 @@ const ProductCard: React.FC<{ product: ProductType }> = memo(({ product }) => {
           <img
             alt={product.name}
             src={imageUrl}
-            className="aspect-square w-full rounded-md object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
+            className="aspect-square w-full object-cover group-hover:opacity-75 lg:aspect-auto lg:h-80"
           />
         </a>
         <ChevronLeftIcon
@@ -79,9 +79,16 @@ const ProductCard: React.FC<{ product: ProductType }> = memo(({ product }) => {
           ></div>
         ))}
       </div>
-      <div className="px-4 py-2">
-        <h3 className="text-sm text-gray-700 font-semibold">{product.name}</h3>
-        <p className="text-sm font-medium text-gray-900">${product.price}</p>
+      <div className="px-4 my-2">
+        <div className="flex items-center justify-between">
+          <h3 className="text-sm text-gray-700 font-semibold">
+            {product.name}
+          </h3>
+          <p className="text-m font-semibold text-gray-900">${product.price}</p>
+        </div>
+        <p className="mt-1 text-sm text-gray-500 line-clamp-1">
+          {product.description}
+        </p>
       </div>
     </div>
   );
