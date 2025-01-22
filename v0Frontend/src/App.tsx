@@ -1,4 +1,4 @@
-import ProductsDashboard from "./Dashboard/ProductsDashboard";
+import ProductsDashboard from "./dashboard/ProductsDashboard";
 
 function App() {
   return (
