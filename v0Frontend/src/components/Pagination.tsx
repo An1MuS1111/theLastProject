@@ -13,7 +13,7 @@ export function Pagination({
   onPageChange,
 }: PaginationProps) {
   return (
-    <div className="flex items-center justify-between border-t border-slate-800 bg-[#0B1120] px-6 py-3">
+    <div className="flex items-center justify-between border-t border-slate-800 bg-[#0B1120] px-6 py-2">
       <Button
         variant="ghost"
         size="sm"

@@ -27,14 +27,14 @@ const ProductsDashboard: React.FC<{ children: ReactNode }> = ({ children }) => {
         <AppSidebar />
         <SidebarInset>
           {/* remove bg-gray-300 */}
-          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 bg-gray-300">
+          <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12 bg-gray-300 sticky top-0">
             <div className="flex items-center gap-2 px-4">
               {/* Here was the SideBarTrigger */}
               {/* <SidebarTrigger className="-ml-1" /> */}
             </div>
           </header>
-          <div>
-            <Breadcrumb className="pl-4 py-2 bg-gray-200">
+          <div className="">
+            <Breadcrumb className="pl-4 py-1 bg-gray-200">
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <SidebarTrigger className="-ml-1" />
@@ -58,7 +58,7 @@ const ProductsDashboard: React.FC<{ children: ReactNode }> = ({ children }) => {
             </div>
           </div>
           {/* Here goes the pagination */}
-          <div className="mt-auto">
+          <div className="mt-auto sticky bottom-0">
             <Pagination
               currentPage={currentPage}
               totalPages={totalPages}
